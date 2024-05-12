@@ -1,0 +1,473 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>User Interface - Krnl Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Greetings</a></li><li class="chapter-item expanded affix "><li class="part-title">Introduction</li><li class="chapter-item expanded "><a href="../GettingStarted/GettingStarted.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../GettingStarted/DownloadingKrnl.html"><strong aria-hidden="true">1.1.</strong> Downloading Krnl</a></li><li class="chapter-item expanded "><a href="../GettingStarted/WhitelistingKrnl.html"><strong aria-hidden="true">1.2.</strong> Whitelisting Krnl</a></li><li class="chapter-item expanded "><a href="../GettingStarted/GettingKey.html"><strong aria-hidden="true">1.3.</strong> Getting A Key</a></li><li class="chapter-item expanded "><a href="../GettingStarted/UserInterface.html" class="active"><strong aria-hidden="true">1.4.</strong> User Interface</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="../APIRef.html"><strong aria-hidden="true">2.</strong> API Reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../APIReference/APIRefMain/EnvironmentFunc.html"><strong aria-hidden="true">2.1.</strong> Environment Functions</a></li><li class="chapter-item expanded "><a href="../APIReference/APIRefMain/MetatableFunc.html"><strong aria-hidden="true">2.2.</strong> Metatable Functions</a></li><li class="chapter-item expanded "><a href="../APIReference/APIRefMain/InputFunc.html"><strong aria-hidden="true">2.3.</strong> Input Functions</a></li><li class="chapter-item expanded "><a href="../APIReference/APIRefMain/ClosureFunc.html"><strong aria-hidden="true">2.4.</strong> Closure Functions</a></li><li class="chapter-item expanded "><a href="../APIReference/APIRefMain/InstanceSavFunc.html"><strong aria-hidden="true">2.5.</strong> Instance Saving Functions</a></li><li class="chapter-item expanded "><a href="../APIReference/APIRefMain/ConsoleFunc.html"><strong aria-hidden="true">2.6.</strong> Console Functions</a></li><li class="chapter-item expanded "><a href="../APIReference/APIRefMain/FileSysFunc.html"><strong aria-hidden="true">2.7.</strong> Filesystem Functions</a></li><li class="chapter-item expanded "><a href="../APIReference/APIRefMain/MiscFunc.html"><strong aria-hidden="true">2.8.</strong> Miscellaneous Functions</a></li><li class="chapter-item expanded "><a href="../APIReference/APIRefMain/OtherFunc.html"><strong aria-hidden="true">2.9.</strong> Other Functions</a></li></ol></li><li class="chapter-item expanded "><a href="../Libraries.html"><strong aria-hidden="true">3.</strong> Libraries</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../APIReference/Libraries/BitLib.html"><strong aria-hidden="true">3.1.</strong> Bit Library</a></li><li class="chapter-item expanded "><a href="../APIReference/Libraries/CryptLib.html"><strong aria-hidden="true">3.2.</strong> Crypt Library</a></li><li class="chapter-item expanded "><a href="../APIReference/Libraries/DebugLib.html"><strong aria-hidden="true">3.3.</strong> Debug Library</a></li><li class="chapter-item expanded "><a href="../APIReference/Libraries/DrawingLib.html"><strong aria-hidden="true">3.4.</strong> Drawing Library</a></li><li class="chapter-item expanded "><a href="../APIReference/Libraries/CacheLib.html"><strong aria-hidden="true">3.5.</strong> Cache Library</a></li><li class="chapter-item expanded "><a href="../APIReference/Libraries/KrnlLib.html"><strong aria-hidden="true">3.6.</strong> Krnl Library</a></li><li class="chapter-item expanded "><a href="../APIReference/Libraries/WebsockLib.html"><strong aria-hidden="true">3.7.</strong> Websocket Library</a></li></ol></li><li class="chapter-item expanded "><a href="../APIReference/APIRefMain/KrnlAPI.html"><strong aria-hidden="true">4.</strong> Krnl API</a></li><li class="chapter-item expanded affix "><li class="part-title">Support</li><li class="chapter-item expanded "><a href="../Support.html"><strong aria-hidden="true">5.</strong> Support</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Support/BrowserBlock.html"><strong aria-hidden="true">5.1.</strong> Browser Blocking Download</a></li><li class="chapter-item expanded "><a href="../Support/InvalidKey.html"><strong aria-hidden="true">5.2.</strong> Invalid Key</a></li><li class="chapter-item expanded "><a href="../Support/InterfaceDir.html"><strong aria-hidden="true">5.3.</strong> Interface Directory</a></li><li class="chapter-item expanded "><a href="../Support/AutoExecute.html"><strong aria-hidden="true">5.4.</strong> Auto Execute</a></li><li class="chapter-item expanded "><a href="../Support/AddScripts.html"><strong aria-hidden="true">5.5.</strong> Adding Scripts To The Interface</a></li><li class="chapter-item expanded "><a href="../Support/AddCustomCont.html"><strong aria-hidden="true">5.6.</strong> Adding Custom Content To The Editor</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Credentials</li><li class="chapter-item expanded "><a href="../Credits.html"><strong aria-hidden="true">6.</strong> Credits</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Krnl Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="user-interface"><a class="header" href="#user-interface">User Interface</a></h1>
+<p>This is the Legacy User-Interface for Krnl. (Not Recommended)</p>
+<p align="center">
+    <img src="https://i.imgur.com/6upg2ld.png">
+</p>
+<hr />
+<h2 id="legacy-interface"><a class="header" href="#legacy-interface">Legacy Interface:</a></h2>
+<p align="center">
+    <img src="https://i.imgur.com/zSgErz9.png">
+</p>
+<ol>
+<li>File
+<ul>
+<li>The File tab has two options: Inject and Kill Roblox, which should be self-explanatory.</li>
+</ul>
+</li>
+<li>Credits
+<ul>
+<li>Opens the Credentials Menu.</li>
+<li>The Credentials Menu lists all the people that have contributed to Krnl.</li>
+</ul>
+</li>
+<li>Games
+<ul>
+<li>The Games tab is currently not in use due to it being outdated (just like the legacy ui itself).</li>
+</ul>
+</li>
+<li>Hot-Scripts
+<ul>
+<li>The Hot-Scripts tab is Krnl's mini script-hub.</li>
+<li>As of May 26, 2021, the following scripts are available:
+<ul>
+<li>Dark Dex</li>
+<li>OpenGui</li>
+<li>RemoteSpy</li>
+<li>Game Sense</li>
+<li>Unnamed ESP</li>
+<li>Infinite Yield</li>
+<li>CMD-X</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Other
+<ul>
+<li>The Other's tab contains other stuff, such as getting a key and the Discord server.</li>
+</ul>
+</li>
+<li>Script Editor
+<ul>
+<li>The Script Editor is where you will put all of your scripts/code to execute.</li>
+<li>Above the editor, you can see the script tabs. You can have multiple scripts at once in different tabs, which you can rename by right-clicking on the tab. Clicking the plus icon next to the tab creates a new tab.</li>
+</ul>
+</li>
+<li>Execute Button
+<ul>
+<li>Executes the code in the script editor.</li>
+</ul>
+</li>
+<li>Clear Button
+<ul>
+<li>Clears anything that is inside of the script editor.</li>
+</ul>
+</li>
+<li>Open File
+<ul>
+<li>Open files from a directory.</li>
+</ul>
+</li>
+<li>Save File
+<ul>
+<li>Save scripts from a script tab.</li>
+</ul>
+</li>
+<li>Inject
+<ul>
+<li>Injects into the process.</li>
+</ul>
+</li>
+<li>Options
+<ul>
+<li>Opens the Options Menu.</li>
+<li>There are 5 options that you can modify with the Legacy UI:
+<ul>
+<li>Auto Attach</li>
+<li>Top-Most</li>
+<li>Opacity Fade-In/Out</li>
+<li>Remove Crash Logs</li>
+<li>Toggle Monaco</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Script Box
+<ul>
+<li>The script box contains any personal scripts that you may have stuck inside of your <code>Scripts</code> folder inside the Krnl directory.</li>
+<li>Want to add scripts to your script box? <a href="/Support/AddScripts.html">Click Me</a></li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="user-interface-1"><a class="header" href="#user-interface-1">User Interface:</a></h2>
+<p>This is the updated and most recent Krnl Interface. (Recommended)</p>
+<p align="center">
+    <img src="https://i.imgur.com/iFQgXWr.png">
+</p>
+<hr />
+<h2 id="execution-page"><a class="header" href="#execution-page">Execution Page:</a></h2>
+<p align="center">
+    <img src="https://i.imgur.com/IyX1NQC.png">
+</p>
+<ol>
+<li>Home Button
+<ul>
+<li>Opens the Home page.</li>
+</ul>
+</li>
+<li>Dropdown Menu Button
+<ul>
+<li>Opens a dropdown with several features.</li>
+</ul>
+</li>
+<li>Script Tabs
+<ul>
+<li>This is where you can keep your scripts organized. Double-clicking the text in the tab allows you to rename it. Clicking the plus icon creates a new tab.</li>
+</ul>
+</li>
+<li>Inject Button
+<ul>
+<li>Begins the injection process.</li>
+</ul>
+</li>
+<li>Execute Button
+<ul>
+<li>Executes the code in your script editor.</li>
+</ul>
+</li>
+<li>Script Editor
+<ul>
+<li>This is where you put your scripts to execute.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="home-page"><a class="header" href="#home-page">Home Page:</a></h2>
+<p align="center">
+    <img src="https://i.imgur.com/Jen756d.png">
+</p>
+<ol>
+<li>Recent
+<ul>
+<li>Allows you to view your recently-created script tabs and their source.
+This can be helpful if you accidentally deleted your tab!</li>
+</ul>
+</li>
+<li>Scripts
+<ul>
+<li>These are your personal scripts. You can add scripts by opening the <code>Scripts</code> folder in the Interface Directory.</li>
+</ul>
+</li>
+<li>Community
+<ul>
+<li>A place for community-created scripts. This is like the Hot-Scripts on the current interface.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="dropdown-menu-preferences"><a class="header" href="#dropdown-menu-preferences">Dropdown Menu (Preferences):</a></h2>
+<p align="center">
+    <img src="https://i.imgur.com/6Ns0oPP.png">
+</p>
+<ol>
+<li>Auto Attach
+<ul>
+<li>Automatically injects Krnl when you open Roblox.</li>
+</ul>
+</li>
+<li>Always on Top
+<ul>
+<li>Keeps Krnl on top of other applications.</li>
+</ul>
+</li>
+<li>Unlock FPS
+<ul>
+<li>Sets your Roblox frame rate to your monitor's refresh rate.</li>
+</ul>
+</li>
+<li>Close Roblox
+<ul>
+<li>Closes Roblox. This is like Kill Roblox on the current interface.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="dropdown-menu-file"><a class="header" href="#dropdown-menu-file">Dropdown Menu (File):</a></h2>
+<p align="center">
+    <img src="https://i.imgur.com/JviC1ds.png">
+</p>
+<ol>
+<li>Open
+<ul>
+<li>Open files directly instead of copying and pasting. This is like Open File on the current interface.</li>
+</ul>
+</li>
+<li>Save
+<ul>
+<li>Saves the current script editor's source.</li>
+</ul>
+</li>
+<li>Save As
+<ul>
+<li>Easily save scripts in a <code>.lua</code> file. This is like Save File on the current interface.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="dropdown-menu-edit"><a class="header" href="#dropdown-menu-edit">Dropdown Menu (Edit)</a></h2>
+<p>These should be self-explanatory.</p>
+<hr />
+<h2 id="dropdown-menu-view"><a class="header" href="#dropdown-menu-view">Dropdown Menu (View)</a></h2>
+<p align="center">
+    <img src="https://i.imgur.com/q66upuO.png">
+</p>
+<ol>
+<li>Code Minimap
+<ul>
+<li>This shows you an overview of your code on the right side of the interface.</li>
+</ul>
+</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../GettingStarted/GettingKey.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../APIRef.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../GettingStarted/GettingKey.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../APIRef.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

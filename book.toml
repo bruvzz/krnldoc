@@ -1,0 +1,7 @@
+[book]
+authors = ["bruvzz"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Krnl Documentation"
+theme = "Ayu"
